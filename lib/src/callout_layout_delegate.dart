@@ -79,7 +79,7 @@ class CalloutLayoutDelegate {
     final deflatedPaintBounds = bodyMargin.deflateRect(paintBounds);
 
     final unpositionedBodyRect = Rect.fromCenter(
-      center: tailBounds.center,
+      center: targetBounds.center.translate(hotspotOffset.dx, hotspotOffset.dy),
       width: bodyWidth,
       height: bodyContainerHeight,
     ).translateToFitX(deflatedPaintBounds);
