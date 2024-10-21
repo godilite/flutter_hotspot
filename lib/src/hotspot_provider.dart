@@ -367,62 +367,62 @@ class HotspotProviderState extends State<HotspotProvider> with TickerProviderSta
               // ),
 
               /// Callout body
-              TweenAnimationBuilder<Rect?>(
-                curve: widget.curve,
-                duration: widget.duration,
-                tween: RectTween(
-                  end: delegate.bodyContainerBounds,
-                ),
-                builder: (context, t, child) {
-                  return Positioned.fromRect(
-                    rect: t!,
-                    child: AnimatedContainer(
-                      curve: widget.curve,
-                      duration: widget.duration,
-                      height: delegate.bodyContainerHeight,
-                      width: delegate.bodyWidth,
-                      alignment: delegate.targetIsAboveCenter ? Alignment.topCenter : Alignment.bottomCenter,
+              // TweenAnimationBuilder<Rect?>(
+              //   curve: widget.curve,
+              //   duration: widget.duration,
+              //   tween: RectTween(
+              //     end: delegate.bodyContainerBounds,
+              //   ),
+              //   builder: (context, t, child) {
+              //     return Positioned.fromRect(
+              //       rect: t!,
+              //       child: AnimatedContainer(
+              //         curve: widget.curve,
+              //         duration: widget.duration,
+              //         height: delegate.bodyContainerHeight,
+              //         width: delegate.bodyWidth,
+              //         alignment: delegate.targetIsAboveCenter ? Alignment.topCenter : Alignment.bottomCenter,
 
-                      /// Absorb tap events so we don't dismiss when tapping on the callout body.
-                      /// Without this, the tap event is passed through to the skrim GestureDetector
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          decoration: BoxDecoration(color: bg),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              /// Callout body
-                              Padding(
-                                padding: widget.bodyPadding,
-                                child: AnimatedSize(
-                                  duration: widget.duration,
-                                  alignment: Alignment.topCenter,
-                                  curve: widget.curve,
-                                  child: currentTarget.widget.calloutBody,
-                                ),
-                              ),
+              //         /// Absorb tap events so we don't dismiss when tapping on the callout body.
+              //         /// Without this, the tap event is passed through to the skrim GestureDetector
+              //         child: ClipRRect(
+              //           borderRadius: BorderRadius.circular(8),
+              //           child: Container(
+              //             decoration: BoxDecoration(color: bg),
+              //             child: Column(
+              //               mainAxisSize: MainAxisSize.min,
+              //               children: [
+              //                 /// Callout body
+              //                 Padding(
+              //                   padding: widget.bodyPadding,
+              //                   child: AnimatedSize(
+              //                     duration: widget.duration,
+              //                     alignment: Alignment.topCenter,
+              //                     curve: widget.curve,
+              //                     child: currentTarget.widget.calloutBody,
+              //                   ),
+              //                 ),
 
-                              /// Callout controls
-                              actionBuilder(
-                                context,
-                                CalloutActionController(
-                                  dismiss: dismiss,
-                                  next: next,
-                                  previous: previous,
-                                  index: _index,
-                                  pages: currentFlow.length,
-                                  foregroundColor: fg,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+              //                 /// Callout controls
+              //                 actionBuilder(
+              //                   context,
+              //                   CalloutActionController(
+              //                     dismiss: dismiss,
+              //                     next: next,
+              //                     previous: previous,
+              //                     index: _index,
+              //                     pages: currentFlow.length,
+              //                     foregroundColor: fg,
+              //                   ),
+              //                 ),
+              //               ],
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
             ],
           ),
         ),
