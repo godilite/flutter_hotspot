@@ -85,9 +85,9 @@ class CalloutLayoutDelegate {
     ).translateToFitX(deflatedPaintBounds);
 
     if (targetIsAboveCenter) {
-      return unpositionedBodyRect.translate(0, hotspotOffset.dy);
+      return unpositionedBodyRect.translate(0, 100);
     } else {
-      return unpositionedBodyRect.translate(0, -hotspotOffset.dy);
+      return unpositionedBodyRect.translate(0, -100);
     }
   }
 
