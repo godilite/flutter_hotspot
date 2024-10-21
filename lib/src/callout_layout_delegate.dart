@@ -61,8 +61,7 @@ class CalloutLayoutDelegate {
   }
 
   /// Determine if the target is above center or below center
-  bool get targetIsAboveCenter =>
-      targetBounds.center.dy < paintBounds.height / 2;
+  bool get targetIsAboveCenter => targetBounds.center.dy < paintBounds.height / 2;
 
   /// The bounding rectangle for the callout tail
   Rect get tailBounds {
@@ -73,8 +72,7 @@ class CalloutLayoutDelegate {
         ? inset.bottomCenter.translate(0, tailSize.height)
         : inset.topCenter.translate(0, -tailSize.height);
 
-    return Rect.fromCenter(
-        center: tailCenter, width: tailSize.width, height: tailSize.height * 2);
+    return Rect.fromCenter(center: tailCenter, width: tailSize.width, height: tailSize.height * 2);
   }
 
   Rect get bodyContainerBounds {
@@ -87,9 +85,9 @@ class CalloutLayoutDelegate {
     ).translateToFitX(deflatedPaintBounds);
 
     if (targetIsAboveCenter) {
-      return unpositionedBodyRect.translate(0, bodyContainerHeight / 2);
+      return unpositionedBodyRect.translate(0, hotspotOffset.dy / 2);
     } else {
-      return unpositionedBodyRect.translate(0, -bodyContainerHeight / 2);
+      return unpositionedBodyRect.translate(0, -hotspotOffset.dy / 2);
     }
   }
 
@@ -101,8 +99,7 @@ class CalloutLayoutDelegate {
 extension on Rect {
   /// Tranlate this Rect horizontally to fit inside another Rect
   Rect translateToFitX(Rect e) {
-    assert(width <= e.width,
-        'The parent Rect(width: ${e.width}) must be wider than this Rect(width:$width)');
+    assert(width <= e.width, 'The parent Rect(width: ${e.width}) must be wider than this Rect(width:$width)');
 
     /// Overhanging on the right
     if (e.right < right) {
