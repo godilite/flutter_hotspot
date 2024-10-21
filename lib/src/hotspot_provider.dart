@@ -350,21 +350,21 @@ class HotspotProviderState extends State<HotspotProvider> with TickerProviderSta
           child: Stack(
             children: [
               /// Callout tail
-              // TweenAnimationBuilder<Rect?>(
-              //   curve: widget.curve,
-              //   duration: widget.duration,
-              //   tween: RectTween(
-              //     end: delegate.tailBounds,
-              //   ),
-              //   builder: (context, t, child) {
-              //     return CustomPaint(
-              //       painter: CalloutTailPainter(
-              //         tailBounds: t!,
-              //         color: bg,
-              //       ),
-              //     );
-              //   },
-              // ),
+              TweenAnimationBuilder<Rect?>(
+                curve: widget.curve,
+                duration: widget.duration,
+                tween: RectTween(
+                  end: delegate.tailBounds,
+                ),
+                builder: (context, t, child) {
+                  return CustomPaint(
+                    painter: CalloutTailPainter(
+                      tailBounds: t!,
+                      color: bg,
+                    ),
+                  );
+                },
+              ),
 
               /// Callout body
               // TweenAnimationBuilder<Rect?>(
