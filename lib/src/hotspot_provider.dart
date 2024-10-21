@@ -91,8 +91,7 @@ class HotspotProvider extends StatefulWidget {
     this.bodyMargin = const EdgeInsets.all(8),
     this.bodyWidth = 322,
     this.skrimColor,
-    this.hotspotShapeBorder = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(16))),
+    this.hotspotShapeBorder = const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
     this.bodyPadding = const EdgeInsets.all(16),
     this.dismissibleSkrim = true,
     this.skrimCurve = Curves.easeOutExpo,
@@ -151,17 +150,14 @@ class HotspotProvider extends StatefulWidget {
   final Curve skrimCurve;
 
   /// Retreive the ancestor [HotspotProvider] for the purpose of performing actions.
-  static HotspotProviderState of(BuildContext context) =>
-      Provider.of<HotspotProviderState>(context, listen: false);
+  static HotspotProviderState of(BuildContext context) => Provider.of<HotspotProviderState>(context, listen: false);
 
   @override
   HotspotProviderState createState() => HotspotProviderState();
 }
 
-class HotspotProviderState extends State<HotspotProvider>
-    with TickerProviderStateMixin {
-  CalloutActionBuilder get actionBuilder =>
-      widget.actionBuilder ?? (_, c) => HotspotActionBuilder(c);
+class HotspotProviderState extends State<HotspotProvider> with TickerProviderStateMixin {
+  CalloutActionBuilder get actionBuilder => widget.actionBuilder ?? (_, c) => HotspotActionBuilder(c);
 
   final _targets = <HotspotTargetState>[];
 
@@ -176,8 +172,7 @@ class HotspotProviderState extends State<HotspotProvider>
 
   /// Convenience getter for the current flow sorted by order.
   List<HotspotTargetState> get currentFlow =>
-      _targets.where((e) => e.widget.flow == _flow).toList()
-        ..sort((a, b) => a.widget.order.compareTo(b.widget.order));
+      _targets.where((e) => e.widget.flow == _flow).toList()..sort((a, b) => a.widget.order.compareTo(b.widget.order));
 
   /// Initiate a hotspot flow
   void startFlow([String flow = 'main']) {
@@ -243,8 +238,7 @@ class HotspotProviderState extends State<HotspotProvider>
   }
 
   /// Removes all targets that are not mounted
-  void _pruneUnmountedTargets() =>
-      _targets.removeWhere((e) => e.mounted == false);
+  void _pruneUnmountedTargets() => _targets.removeWhere((e) => e.mounted == false);
 
   /// Handle new targets as they become available
   void _handleNewTarget(HotspotTargetState e) {
@@ -252,11 +246,9 @@ class HotspotProviderState extends State<HotspotProvider>
     _pruneUnmountedTargets();
   }
 
-  Color get bg =>
-      widget.backgroundColor ?? Theme.of(context).colorScheme.surfaceBright;
+  Color get bg => widget.backgroundColor ?? Theme.of(context).colorScheme.surfaceBright;
 
-  Color get fg =>
-      widget.foregroundColor ?? Theme.of(context).colorScheme.onSurface;
+  Color get fg => widget.foregroundColor ?? Theme.of(context).colorScheme.onSurface;
 
   @override
   Widget build(BuildContext context) {
@@ -345,8 +337,7 @@ class HotspotProviderState extends State<HotspotProvider>
                   painter: HotspotPainter(
                     hotspotBounds: t!,
                     shapeBorder: widget.hotspotShapeBorder,
-                    skrimColor: widget.skrimColor ??
-                        Theme.of(context).colorScheme.scrim.withOpacity(0.4),
+                    skrimColor: widget.skrimColor ?? Theme.of(context).colorScheme.scrim.withOpacity(0.4),
                   ),
                 );
               },
@@ -359,21 +350,21 @@ class HotspotProviderState extends State<HotspotProvider>
           child: Stack(
             children: [
               /// Callout tail
-              TweenAnimationBuilder<Rect?>(
-                curve: widget.curve,
-                duration: widget.duration,
-                tween: RectTween(
-                  end: delegate.tailBounds,
-                ),
-                builder: (context, t, child) {
-                  return CustomPaint(
-                    painter: CalloutTailPainter(
-                      tailBounds: t!,
-                      color: bg,
-                    ),
-                  );
-                },
-              ),
+              // TweenAnimationBuilder<Rect?>(
+              //   curve: widget.curve,
+              //   duration: widget.duration,
+              //   tween: RectTween(
+              //     end: delegate.tailBounds,
+              //   ),
+              //   builder: (context, t, child) {
+              //     return CustomPaint(
+              //       painter: CalloutTailPainter(
+              //         tailBounds: t!,
+              //         color: bg,
+              //       ),
+              //     );
+              //   },
+              // ),
 
               /// Callout body
               TweenAnimationBuilder<Rect?>(
@@ -390,9 +381,7 @@ class HotspotProviderState extends State<HotspotProvider>
                       duration: widget.duration,
                       height: delegate.bodyContainerHeight,
                       width: delegate.bodyWidth,
-                      alignment: delegate.targetIsAboveCenter
-                          ? Alignment.topCenter
-                          : Alignment.bottomCenter,
+                      alignment: delegate.targetIsAboveCenter ? Alignment.topCenter : Alignment.bottomCenter,
 
                       /// Absorb tap events so we don't dismiss when tapping on the callout body.
                       /// Without this, the tap event is passed through to the skrim GestureDetector
@@ -444,8 +433,7 @@ class HotspotProviderState extends State<HotspotProvider>
 
 /// A function that contains all the data needed to build the
 /// action section of a callout body.
-typedef CalloutActionBuilder = Widget Function(
-    BuildContext context, CalloutActionController controller);
+typedef CalloutActionBuilder = Widget Function(BuildContext context, CalloutActionController controller);
 
 class CalloutActionController {
   /// A stateless controller that passes events back to [HotspotProvider]
